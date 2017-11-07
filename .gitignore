@@ -58,4 +58,4 @@ typings/
 .env
 
 # browserify-generated main.js file
-./public/main.js
+server/public/main.js

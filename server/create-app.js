@@ -1,27 +1,18 @@
 const express = require('express')
 const path = require('path')
-const rssParser = require('rss-parser')
 const bodyParser = require('body-parser')
-const feedConverter = require('./feed-converter')
+const subGateway = require('./sub-gateway')
+const subRouter = require('./sub-router')
 
-module.exports = function createApp() {
+module.exports = function createApp(collection) {
   const app = express()
+  const subs = subGateway(collection)
+  const router = subRouter(subs)
 
   app
     .use(express.static(path.join(__dirname, 'public')))
     .use(bodyParser.json())
-    .post('/subscribe', (req, res) => {
-      const { url } = req.body
-      rssParser.parseURL(url, (err, parsed) => {
-        if (err) {
-          console.error(err)
-          res.sendStatus(400)
-          process.exit(1)
-        }
-        const converted = feedConverter(parsed.feed)
-        res.status(202).json(converted)
-      })
-    })
+    .use(router)
 
   return app
 }
