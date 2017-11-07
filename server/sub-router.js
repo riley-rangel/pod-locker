@@ -17,13 +17,13 @@ module.exports = function subRouter(gateway) {
       try {
         const podcast = { about: converted.about, feed }
         await gateway.subscribe(podcast)
+        res.status(202).json(podcast)
       }
       catch (err) {
         console.error(err)
         res.sendStatus(500)
         process.exit(1)
       }
-      res.status(202).json(converted)
     })
   })
 
