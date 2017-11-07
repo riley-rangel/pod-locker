@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# browserify-generated main.js file
+./public/main.js

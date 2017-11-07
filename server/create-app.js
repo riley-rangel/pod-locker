@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const rssParser = require('rss-parser')
 const bodyParser = require('body-parser')
 const feedConverter = require('./feed-converter')
@@ -7,6 +8,7 @@ module.exports = function createApp() {
   const app = express()
 
   app
+    .use(express.static(path.join(__dirname, 'public')))
     .use(bodyParser.json())
     .post('/subscribe', (req, res) => {
       const { url } = req.body
