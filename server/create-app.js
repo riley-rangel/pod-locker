@@ -1,6 +1,7 @@
 const express = require('express')
 const rssParser = require('rss-parser')
 const bodyParser = require('body-parser')
+const feedConverter = require('./feed-converter')
 
 module.exports = function createApp() {
   const app = express()
@@ -15,7 +16,8 @@ module.exports = function createApp() {
           res.sendStatus(400)
           process.exit(1)
         }
-        res.status(202).json(parsed.feed.title)
+        const converted = feedConverter(parsed.feed)
+        res.status(202).json(converted)
       })
     })
 
