@@ -6,6 +6,10 @@ module.exports = function subGateway(collection) {
       const subscription = { id: uuidv4(), ...podcast }
       await collection.insertOne(subscription)
       return subscription
+    },
+    async find(filter = {}) {
+      const subscriptions = collection.find(filter).toArray()
+      return subscriptions
     }
   }
 }
