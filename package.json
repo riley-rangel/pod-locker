@@ -1,6 +1,9 @@
 {
   "name": "pod-locker",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.8.0"
+  },
   "description": "occs final project",
   "main": "index.js",
   "scripts": {
