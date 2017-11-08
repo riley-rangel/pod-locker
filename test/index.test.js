@@ -32,7 +32,7 @@ describe('app', () => {
     db.close(() => done())
   })
 
-  describe('POST route for subscriptions', () => {
+  describe('POST /subscribe (add subscriptions)', () => {
 
     it('adds sub info to database and returns object with info', done => {
       const options = {

@@ -8,7 +8,7 @@ module.exports = function subGateway(collection) {
       return subscription
     },
     async find(filter = {}) {
-      const subscriptions = collection.find(filter).toArray()
+      const subscriptions = await collection.find(filter).toArray()
       return subscriptions
     }
   }
