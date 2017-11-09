@@ -31,6 +31,11 @@ export class App extends Component {
     const sub = await res.json()
     console.log(sub)
   }
+  async componentDidMount() {
+    const res = await fetch('/subscriptions')
+    const subs = await res.json()
+    this.setState({ subs })
+  }
   render() {
     return (
       <Grid container>
