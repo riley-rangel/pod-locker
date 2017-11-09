@@ -1,46 +1,20 @@
 const { Router } = require('express')
-const rssParser = require('rss-parser')
-const feedConverter = require('./feed-converter')
-const handleError = require('./handle-error')
+const findSubs = require('./middleware/find-subs')
+const updateSubs = require('./middleware/update-subs')
+const findEps = require('./middleware/find-eps')
 
 module.exports = function subRouter(gateway) {
   const router = new Router()
 
   router
-    .get('/subscriptions', async (req, res) => {
-      try {
-        const subs = await gateway.find()
-        res.status(200).json(subs)
-      }
-      catch (err) {
-        handleError(err, res, 500)
-      }
+    .get('/subscriptions', (req, res) => {
+      findSubs(req, res, gateway)
     })
     .post('/subscribe', (req, res) => {
-      const { feed } = req.body
-      rssParser.parseURL(feed, async (err, parsed) => {
-        if (err) handleError(err, res, 400, 1)
-        const converted = feedConverter(parsed.feed)
-        try {
-          const podcast = {
-            about: converted.about,
-            feed
-          }
-          const sub = await gateway.subscribe(podcast)
-          res.status(202).json(sub)
-        }
-        catch (err) {
-          handleError(err, res, 500)
-        }
-      })
+      updateSubs(req, res, gateway)
     })
     .get('/episodes', (req, res) => {
-      const { feed } = req.body
-      rssParser.parseURL(feed, async (err, parsed) => {
-        if (err) handleError(err, res, 400, 1)
-        const { episodes } = feedConverter(parsed.feed)
-        res.json(episodes)
-      })
+      findEps(req, res)
     })
 
   return router
