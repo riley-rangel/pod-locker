@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 import Grid from 'material-ui/Grid'
 import ButtonAppBar from './app-bar'
 import SubForm from './sub-form'
+import SubList from './sub-list'
 
 export class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { view: 'Subscriptions' }
+    this.state = {
+      view: 'Subscriptions',
+      subs: []
+    }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleSubmit(event) {
@@ -34,7 +38,10 @@ export class App extends Component {
           <ButtonAppBar title={ this.state.view } />
         </Grid>
         <Grid item xs={ 12 }>
-          <SubForm handleSumbit={ this.handleSubmit }/>
+          <SubForm handleSumbit={ this.handleSubmit } />
+        </Grid>
+        <Grid item xs={ 12 }>
+          <SubList subs={ this.state.subs } />
         </Grid>
       </Grid>
     )
