@@ -7,6 +7,6 @@ module.exports = function findEps(req, res) {
   rssParser.parseURL(feed, (err, parsed) => {
     if (err) handleError(err, res, 400, 1)
     const { episodes } = feedConverter(parsed.feed)
-    res.json(episodes)
+    return episodes
   })
 }

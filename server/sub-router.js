@@ -8,13 +8,18 @@ module.exports = function subRouter(gateway) {
 
   router
     .get('/subscriptions', (req, res) => {
-      findSubs(req, res, gateway)
+      const subs = findSubs(req, res, gateway)
+      res.status(200).json(subs)
     })
     .post('/subscribe', (req, res) => {
-      updateSubs(req, res, gateway)
+      const sub = updateSubs(req, res, gateway)
+      sub
+        ? res.status(202).json(sub)
+        : res.status(400).json(null)
     })
     .get('/episodes', (req, res) => {
-      findEps(req, res)
+      const episodes = findEps(req)
+      res.json(episodes)
     })
 
   return router
