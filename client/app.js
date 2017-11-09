@@ -12,6 +12,7 @@ export class App extends Component {
       subs: []
     }
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
   handleSubmit(event) {
     event.preventDefault()
@@ -21,10 +22,11 @@ export class App extends Component {
     event.target.reset()
     this.subscribe(feed)
   }
-  async handleClick({ target }) {
+  handleClick({ target }) {
     const $selected = target.closest('div[data-feed]')
-    const feed = $selected.getAttribute('data-feed')
-    console.log(feed)
+    if (!$selected) return
+    const feed = { feed: $selected.getAttribute('data-feed') }
+    console.log(this.getEpisodes(feed))
   }
   async subscribe(feed) {
     const reqOptions = {
@@ -39,6 +41,16 @@ export class App extends Component {
         subs: this.state.subs.concat(sub)
       })
     }
+  }
+  async getEpisodes(feed) {
+    const reqOptions = {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(feed)
+    }
+    const res = await fetch('/episodes', reqOptions)
+    const sub = await res.json()
+    return sub
   }
   async componentDidMount() {
     const res = await fetch('/subscriptions')
