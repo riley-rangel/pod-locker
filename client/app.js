@@ -29,9 +29,11 @@ export class App extends Component {
     }
     const res = await fetch('/subscribe', reqOptions)
     const sub = await res.json()
-    this.setState({
-      subs: this.state.subs.concat(sub)
-    })
+    if (sub) {
+      this.setState({
+        subs: this.state.subs.concat(sub)
+      })
+    }
   }
   async componentDidMount() {
     const res = await fetch('/subscriptions')

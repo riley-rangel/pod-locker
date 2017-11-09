@@ -23,8 +23,8 @@ module.exports = function subRouter(gateway) {
         const converted = feedConverter(parsed.feed)
         try {
           const podcast = { about: converted.about, feed }
-          await gateway.subscribe(podcast)
-          res.status(202).json(podcast)
+          const sub = await gateway.subscribe(podcast)
+          res.status(202).json(sub)
         }
         catch (err) {
           handleError(err, res, 500)
