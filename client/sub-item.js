@@ -16,7 +16,8 @@ export default function subItem(sub, i) {
                 <Avatar alt='' src={ image } />
               </ListItemAvatar>
               <ListItemText
-                primary={ title + ' · ' + author }
+                primary={ title }
+                secondary={ author }
               />
             </ListItem>
           </List>
