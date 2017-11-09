@@ -9,7 +9,7 @@ module.exports = function updateSubs(req, res, gateway) {
     const { about } = feedConverter(parsed.feed)
     try {
       const sub = await gateway.subscribe({ about, feed })
-      return sub
+      sub ? res.status(202).json(sub) : res.status(400).json(null)
     }
     catch (err) {
       handleError(err, res, 500)
