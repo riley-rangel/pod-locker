@@ -3,13 +3,15 @@ import Grid from 'material-ui/Grid'
 import ButtonAppBar from './app-bar'
 import SubForm from './sub-form'
 import SubList from './sub-list'
+import EpisodeList from './episode-list'
 
 export class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       view: 'Subscriptions',
-      subs: []
+      subs: [],
+      eps: []
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -26,7 +28,7 @@ export class App extends Component {
     const $selected = target.closest('div[data-feed]')
     if (!$selected) return
     const feed = { feed: $selected.getAttribute('data-feed') }
-    console.log(this.getEpisodes(feed))
+    this.getEpisodes(feed)
   }
   async subscribe(feed) {
     const reqOptions = {
@@ -49,8 +51,8 @@ export class App extends Component {
       body: JSON.stringify(feed)
     }
     const res = await fetch('/episodes', reqOptions)
-    const sub = await res.json()
-    return sub
+    const eps = await res.json()
+    this.setState({ eps })
   }
   async componentDidMount() {
     const res = await fetch('/subscriptions')
@@ -67,7 +69,10 @@ export class App extends Component {
           <SubForm handleSumbit={ this.handleSubmit } />
         </Grid>
         <Grid item xs={ 12 }>
-          <SubList subs={ this.state.subs } handleClick={ this.handleClick }/>
+          <SubList subs={ this.state.subs } handleClick={ this.handleClick } />
+        </Grid>
+        <Grid item xs={ 12 }>
+          <EpisodeList eps={ this.state.eps } />
         </Grid>
       </Grid>
     )
