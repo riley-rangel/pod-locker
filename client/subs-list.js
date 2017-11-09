@@ -4,16 +4,16 @@ import List, { ListItem, ListItemText, ListItemAvatar } from 'material-ui/List'
 import Card from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
 
-export default function SubsList(subs) {
+export default function SubsList({ subs }) {
   return (
-    <Grid container>
+    <Grid container justify='center'>
       <Grid item xs={ 12 } md={ 6 }>
+        { subs.map((sub, i) => subItem(sub, i)) }
       </Grid>
     </Grid>
   )
 }
 
-console.log(subItem)
 function subItem(sub, i) {
   const { title, author, image } = sub.about
   return (
