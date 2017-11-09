@@ -21,6 +21,11 @@ export class App extends Component {
     event.target.reset()
     this.subscribe(feed)
   }
+  async handleClick({ target }) {
+    const $selected = target.closest('div[data-feed]')
+    const feed = $selected.getAttribute('data-feed')
+    console.log(feed)
+  }
   async subscribe(feed) {
     const reqOptions = {
       method: 'POST',
@@ -50,7 +55,7 @@ export class App extends Component {
           <SubForm handleSumbit={ this.handleSubmit } />
         </Grid>
         <Grid item xs={ 12 }>
-          <SubList subs={ this.state.subs } />
+          <SubList subs={ this.state.subs } handleClick={ this.handleClick }/>
         </Grid>
       </Grid>
     )

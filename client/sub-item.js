@@ -7,7 +7,12 @@ import Avatar from 'material-ui/Avatar'
 export default function subItem(sub, i) {
   const { title, author, image } = sub.about
   return (
-    <Grid container key={ i } justify='center'>
+    <Grid
+      container
+      key={ i }
+      justify='center'
+      data-feed={ sub.feed }
+    >
       <Grid item xs={ 10 } md={ 12 }>
         <Card>
           <List>
