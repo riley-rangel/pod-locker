@@ -22,13 +22,24 @@ module.exports = function subRouter(gateway) {
         if (err) handleError(err, res, 400, 1)
         const converted = feedConverter(parsed.feed)
         try {
-          const podcast = { about: converted.about, feed }
+          const podcast = {
+            about: converted.about,
+            feed
+          }
           const sub = await gateway.subscribe(podcast)
           res.status(202).json(sub)
         }
         catch (err) {
           handleError(err, res, 500)
         }
+      })
+    })
+    .get('/episodes', (req, res) => {
+      const { feed } = req.body
+      rssParser.parseURL(feed, async (err, parsed) => {
+        if (err) handleError(err, res, 400, 1)
+        const { episodes } = feedConverter(parsed.feed)
+        res.json(episodes)
       })
     })
 
