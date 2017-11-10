@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { MuiThemeProvider, withStyles } from 'material-ui/styles'
 import AppBar from 'material-ui/AppBar'
@@ -19,6 +20,10 @@ const styles = theme => ({
   menuButton: {
     marginLeft: -12,
     marginRight: 20
+  },
+  links: {
+    textDecoration: 'none',
+    color: 'white'
   }
 })
 
@@ -39,7 +44,9 @@ function ButtonAppBar(props) {
               type='title'
               color='inherit'
               className={ classes.flex }>
-              { title }
+              <Link to='/' className={ classes.links }>
+                { title }
+              </Link>
             </Typography>
           </Toolbar>
         </AppBar>
