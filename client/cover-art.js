@@ -10,8 +10,8 @@ const styles = {
     borderRadius: '100%'
   },
   dimensions: {
-    height: '18rem',
-    width: '18rem'
+    height: '18vw',
+    width: '18vw'
   }
 }
 

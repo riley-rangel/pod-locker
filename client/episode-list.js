@@ -5,7 +5,7 @@ import episodeItem from './episode-item'
 export default function EpisodeList({ eps }) {
   return (
     <Grid container justify='center'>
-      <Grid item xs={ 12 } md={ 6 }>
+      <Grid item xs={ 12 }>
         { eps.map((episode, i) => episodeItem(episode, i)) }
       </Grid>
     </Grid>

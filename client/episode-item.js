@@ -8,7 +8,7 @@ import formatTime from './format-time'
 export default function episodeItem({ title, pubDate, duration }, i) {
   return (
     <Grid container key={ i }>
-      <Grid item xs={ 10 } md={ 12 }>
+      <Grid item xs={ 12 }>
         <Card>
           <List>
             <ListItem button>

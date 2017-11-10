@@ -11,11 +11,7 @@ import theme from './theme'
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.uni,
     width: '100%'
-  },
-  flex: {
-    flex: 1
   },
   menuButton: {
     marginLeft: -12,

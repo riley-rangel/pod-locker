@@ -19,14 +19,14 @@ function EpisodeHeader({ classes, podcast }) {
   const { description, image, link, owner, title } = podcast
   return (
     <Grid container justify='center' className={ classes.container }>
-      <Grid item xs={ 10 } md={ 6 }>
+      <Grid item xs={ 10 } sm={ 12 }>
         <Grid container>
-          <Grid item xs={ 12 } md={ 4 }>
+          <Grid item xs={ 12 } sm={ 12 } md={ 4 }>
             <Grid container justify='center'>
               <CoverArt alt={ 'test' } src={ image } />
             </Grid>
           </Grid>
-          <Grid item xs={ 12 } md={ 8 }>
+          <Grid item xs={ 12 } sm={ 12 } md={ 8 }>
             <Grid container>
               <Grid item xs={ 12 }>
                 <Typography type='display3'>

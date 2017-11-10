@@ -3,6 +3,7 @@ import ButtonAppBar from './app-bar'
 import SubContainer from './sub-container'
 import EpisodeContainer from './episode-container'
 import { Route } from 'react-router-dom'
+import Grid from 'material-ui/Grid'
 
 export default class App extends Component {
   constructor(props) {
@@ -33,8 +34,12 @@ export default class App extends Component {
     return (
       <div>
         <ButtonAppBar title={ this.state.view } />
-        <Route exact path='/' render={ props => <SubContainer { ...props } handleClick={ this.handleClick } /> } />
-        <Route path='/eps' render={ props => <EpisodeContainer { ...props } eps={ this.state.eps } /> } />
+        <Grid container justify='center'>
+          <Grid item xs={ 12 } sm={ 10 } lg={ 8 } xl={ 6 }>
+            <Route exact path='/' render={ props => <SubContainer { ...props } handleClick={ this.handleClick } /> } />
+            <Route path='/eps' render={ props => <EpisodeContainer { ...props } eps={ this.state.eps } /> } />
+          </Grid>
+        </Grid>
       </div>
     )
   }
