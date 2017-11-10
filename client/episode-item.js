@@ -13,18 +13,17 @@ export default function episodeItem({ title, pubDate, duration }, i) {
           <List>
             <ListItem button>
               <Grid container>
-                <Grid item xs={ 8 }>
+                <Grid item xs={ 12 } md={ 8 }>
                   <ListItemText primary={ title } />
                 </Grid>
-                <Grid item xs={ 4 }>
+                <Grid item xs={ 12 } md={ 4 }>
                   <Grid container>
                     <Grid item xs={ 6 }>
                       <ListItemText primary={ formatDate(pubDate) } />
                     </Grid>
                     <Grid item xs={ 6 }>
                       <ListItemText
-                        primary={ formatTime(duration) }
-                      />
+                        primary={ formatTime(duration) } />
                     </Grid>
                   </Grid>
                 </Grid>
