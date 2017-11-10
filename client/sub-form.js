@@ -6,7 +6,9 @@ import TextField from 'material-ui/TextField'
 
 const styles = {
   container: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginTop: '2rem',
+    marginBottom: '3rem'
   },
   sub: {
     width: '100%'
@@ -17,11 +19,11 @@ function SubForm(props) {
   const { classes, handleSumbit } = props
   return (
     <div className={ classes.container }>
-      <Grid container alignItems='center'>
-        <Grid item xs={ 12 }>
+      <Grid container justify='center'>
+        <Grid item xs={ 10 } sm={ 12 }>
           <form onSubmit={ handleSumbit } noValidate autoComplete='off'>
             <Grid container justify='center'>
-              <Grid item xs={ 10 } md={ 6 }>
+              <Grid item xs={ 12 }>
                 <TextField
                   id='feed'
                   name='feed'

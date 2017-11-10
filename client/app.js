@@ -1,58 +1,46 @@
 import React, { Component } from 'react'
-import Grid from 'material-ui/Grid'
 import ButtonAppBar from './app-bar'
-import SubForm from './sub-form'
-import SubList from './sub-list'
+import SubContainer from './sub-container'
+import EpisodeContainer from './episode-container'
+import { Route } from 'react-router-dom'
+import Grid from 'material-ui/Grid'
 
-export class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       view: 'Subscriptions',
-      subs: []
+      eps: []
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
-  handleSubmit(event) {
-    event.preventDefault()
-    const formData = new FormData(event.target)
-    if (!formData.get('feed')) return
-    const feed = { feed: formData.get('feed') }
-    event.target.reset()
-    this.subscribe(feed)
+  handleClick({ target }) {
+    const $selected = target.closest('div[data-feed]')
+    if (!$selected) return
+    const feed = { feed: $selected.getAttribute('data-feed') }
+    this.getEpisodes(feed)
   }
-  async subscribe(feed) {
+  async getEpisodes(feed) {
     const reqOptions = {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(feed)
     }
-    const res = await fetch('/subscribe', reqOptions)
-    const sub = await res.json()
-    if (sub) {
-      this.setState({
-        subs: this.state.subs.concat(sub)
-      })
-    }
-  }
-  async componentDidMount() {
-    const res = await fetch('/subscriptions')
-    const subs = await res.json()
-    this.setState({ subs })
+    const res = await fetch('/episodes', reqOptions)
+    const eps = await res.json()
+    this.setState({ eps })
   }
   render() {
     return (
-      <Grid container>
-        <Grid item xs={ 12 }>
-          <ButtonAppBar title={ this.state.view } />
+      <div>
+        <ButtonAppBar title={ this.state.view } />
+        <Grid container justify='center'>
+          <Grid item xs={ 12 } sm={ 10 } lg={ 8 } xl={ 6 }>
+            <Route exact path='/' render={ props => <SubContainer { ...props } handleClick={ this.handleClick } /> } />
+            <Route path='/eps' render={ props => <EpisodeContainer { ...props } eps={ this.state.eps } /> } />
+          </Grid>
         </Grid>
-        <Grid item xs={ 12 }>
-          <SubForm handleSumbit={ this.handleSubmit } />
-        </Grid>
-        <Grid item xs={ 12 }>
-          <SubList subs={ this.state.subs } />
-        </Grid>
-      </Grid>
+      </div>
     )
   }
 }
