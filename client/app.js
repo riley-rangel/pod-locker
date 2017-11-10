@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ButtonAppBar from './app-bar'
 import SubContainer from './sub-container'
 import EpisodeContainer from './episode-container'
+import { Route } from 'react-router-dom'
 
 export default class App extends Component {
   constructor(props) {
@@ -32,8 +33,8 @@ export default class App extends Component {
     return (
       <div>
         <ButtonAppBar title={ this.state.view } />
-        <SubContainer handleClick={ this.handleClick } />
-        <EpisodeContainer eps={ this.state.eps } />
+        <Route exact path='/' render={ props => <SubContainer { ...props } handleClick={ this.handleClick } /> } />
+        <Route path='/eps' render={ props => <EpisodeContainer { ...props } eps={ this.state.eps } /> } />
       </div>
     )
   }
