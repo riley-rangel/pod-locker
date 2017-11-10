@@ -21,6 +21,7 @@ function episodeConverter(entry) {
   return {
     description: contentSnippet,
     audio: enclosure,
+    duration: itunes.duration,
     author: itunes.author,
     image: itunes.image,
     link,
