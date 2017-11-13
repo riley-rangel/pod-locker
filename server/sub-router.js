@@ -1,8 +1,8 @@
 const { Router } = require('express')
 const { promisify } = require('util')
 const rssParser = require('rss-parser')
-const wrap = require('./wrap')
-const feedConverter = require('./feed-converter')
+const wrap = require('./utilities/wrap')
+const feedConverter = require('./utilities/feed-converter')
 
 const asyncParseURL = promisify(rssParser.parseURL)
 
