@@ -1,21 +1,29 @@
 const { Router } = require('express')
-const findSubs = require('./middleware/find-subs')
-const updateSubs = require('./middleware/update-subs')
-const findEps = require('./middleware/find-eps')
+const { promisify } = require('util')
+const rssParser = require('rss-parser')
+const wrap = require('./wrap')
+const feedConverter = require('./feed-converter')
+
+const asyncParseURL = promisify(rssParser.parseURL)
 
 module.exports = function subRouter(gateway) {
   const router = new Router()
 
   router
-    .get('/subscriptions', (req, res) => {
-      findSubs(req, res, gateway)
-    })
-    .post('/subscribe', (req, res) => {
-      updateSubs(req, res, gateway)
-    })
-    .post('/episodes', (req, res) => {
-      findEps(req, res)
-    })
+    .get('/subscriptions', wrap(async (req, res) => {
+      const subs = await gateway.find()
+      res.status(200).json(subs)
+    }))
+    .post('/subscribe', wrap(async ({ body: { feed } }, res) => {
+      const parsed = await asyncParseURL(feed)
+      const { about } = feedConverter(parsed.feed)
+      const sub = await gateway.subscribe({ about, feed })
+      sub ? res.status(202).json(sub) : res.status(400).json(null)
+    }))
+    .post('/episodes', wrap(async ({ body: { feed } }, res) => {
+      const parsed = await asyncParseURL(feed)
+      res.json(feedConverter(parsed.feed))
+    }))
 
   return router
 }
