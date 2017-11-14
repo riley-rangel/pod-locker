@@ -4,7 +4,7 @@ import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
 import Icon from 'material-ui/Icon'
-import formatProgress from './utilities/format-progress'
+import formatProgress from '../utilities/format-progress'
 
 const styles = {
   container: {
