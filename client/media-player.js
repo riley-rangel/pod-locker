@@ -58,7 +58,7 @@ const styles = {
 function MediaPlayer(props) {
   const { classes } = props
   const { episode: { image, podcast, title } } = props
-  const { playing, updatePlaying } = props
+  const { duration, playing, progress, updatePlaying } = props
   return (
     <Grid container justify='center'>
       <Grid item xs={ 12 } className={ classes.container }>
@@ -96,16 +96,16 @@ function MediaPlayer(props) {
                   id='progress-bar'
                   type='range'
                   min={ 0 }
-                  max={ 100 }
-                  value={ 0 }
+                  max={ duration }
+                  value={ progress }
                 />
                 <Typography
                   className={ classes.progessLeft }>
-                  { 0 }
+                  { progress }
                 </Typography>
                 <Typography
                   className={ classes.progressRight }>
-                  { 100 }
+                  { duration }
                 </Typography>
               </Grid>
             </Grid>
