@@ -11,7 +11,10 @@ import theme from './theme'
 
 const styles = theme => ({
   root: {
-    width: '100%'
+    position: 'fixed',
+    top: 0,
+    width: '100%',
+    zIndex: 100
   },
   menuButton: {
     marginLeft: -12,

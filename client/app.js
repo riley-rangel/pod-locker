@@ -52,23 +52,17 @@ export default class App extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={{ 'margin': '65px 0 150px' }}>
         <ButtonAppBar title={ this.state.view } />
         <Grid container justify='center'>
           <Grid item xs={ 12 } sm={ 10 } lg={ 8 } xl={ 6 }>
             <Route
               exact path='/'
-              render={
-                props =>
-                  <Subscription { ...props } handleClick={ this.handleClick } />
-              }
+              render={ props => <Subscription { ...props } handleClick={ this.handleClick } /> }
             />
             <Route
               path='/eps'
-              render={
-                props =>
-                  <Episode { ...props } eps={ this.state.eps } handleClick={ this.handleEpisodeClick } />
-              }
+              render={ props => <Episode { ...props } eps={ this.state.eps } handleClick={ this.handleEpisodeClick } /> }
             />
           </Grid>
         </Grid>
