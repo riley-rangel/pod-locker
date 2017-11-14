@@ -2,7 +2,7 @@ import React from 'react'
 import Grid from 'material-ui/Grid'
 import List, { ListItem, ListItemText, ListItemAvatar } from 'material-ui/List'
 import Card from 'material-ui/Card'
-import CoverArtMain from './sub-cover-art'
+import CoverArt from './sub-cover-art'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
@@ -26,7 +26,7 @@ function SubItem({ classes, subscription }) {
             <List>
               <ListItem button>
                 <ListItemAvatar>
-                  <CoverArtMain alt='' src={ image } />
+                  <CoverArt alt='' src={ image } />
                 </ListItemAvatar>
                 <ListItemText
                   primary={ title }

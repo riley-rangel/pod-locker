@@ -14,7 +14,7 @@ const styles = {
     height: '130px',
     width: '100%',
     backgroundColor: 'rgba(255, 255, 255, 1.0)',
-    boxShadow: '0 -3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
+    boxShadow: '0 -3px 6px rgba( 0, 0, 0, 0.16), 0 3px 6px rgba( 0, 0, 0, 0.23)'
   },
   coverArt: {
     position: 'relative',

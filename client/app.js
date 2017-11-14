@@ -4,7 +4,7 @@ import Grid from 'material-ui/Grid'
 import ButtonAppBar from './app-bar'
 import Subscription from './subscription/'
 import Episode from './episode/'
-import MediaContainer from './media-container'
+import MediaPlayer from './player/'
 
 export default class App extends Component {
   constructor(props) {
@@ -66,7 +66,7 @@ export default class App extends Component {
             />
           </Grid>
         </Grid>
-        <MediaContainer episode={ this.state.playing } />
+        <MediaPlayer episode={ this.state.playing } />
       </div>
     )
   }
