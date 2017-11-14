@@ -4,7 +4,7 @@ import Grid from 'material-ui/Grid'
 import ButtonAppBar from './app-bar'
 import Subscription from './subscription/'
 import Episode from './episode/'
-import MediaPlayer from './media-container'
+import MediaContainer from './media-container'
 
 export default class App extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class App extends Component {
     this.state = {
       view: 'Subscriptions',
       eps: [],
-      playing: ''
+      playing: {}
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleEpisodeClick = this.handleEpisodeClick.bind(this)
@@ -26,9 +26,19 @@ export default class App extends Component {
   handleEpisodeClick({ target }) {
     const $selected = target.closest('div[ data-url ]')
     if (!$selected) return
-    const episode = $selected.getAttribute('data-url')
-    if (episode === this.state.playing) return
-    this.setState({ playing: episode })
+    const url = $selected.getAttribute('data-url')
+    if (url === this.state.playing) return
+    const episode = this.state.eps.episodes.find(episode => {
+      return episode.audio.url === url
+    })
+    this.setState({
+      playing: {
+        url,
+        image: this.state.eps.about.image,
+        podcast: this.state.eps.about.title,
+        title: episode.title
+      }
+    })
   }
   async getEpisodes(feed) {
     const reqOptions = {
@@ -44,7 +54,6 @@ export default class App extends Component {
     return (
       <div>
         <ButtonAppBar title={ this.state.view } />
-        <MediaPlayer episode={ this.state.playing } />
         <Grid container justify='center'>
           <Grid item xs={ 12 } sm={ 10 } lg={ 8 } xl={ 6 }>
             <Route
@@ -63,6 +72,7 @@ export default class App extends Component {
             />
           </Grid>
         </Grid>
+        <MediaContainer episode={ this.state.playing } />
       </div>
     )
   }
