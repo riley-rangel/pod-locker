@@ -1,9 +1,10 @@
 import React from 'react'
-import Grid from 'material-ui/Grid'
 import PropTypes from 'prop-types'
+import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
 import Icon from 'material-ui/Icon'
+import formatProgress from './utilities/format-progress'
 
 const styles = {
   container: {
@@ -101,11 +102,11 @@ function MediaPlayer(props) {
                 />
                 <Typography
                   className={ classes.progessLeft }>
-                  { progress }
+                  { formatProgress(progress) }
                 </Typography>
                 <Typography
                   className={ classes.progressRight }>
-                  { duration }
+                  { formatProgress(duration) }
                 </Typography>
               </Grid>
             </Grid>
