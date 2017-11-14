@@ -4,7 +4,7 @@ import Grid from 'material-ui/Grid'
 import ButtonAppBar from './app-bar'
 import Subscription from './subscription/'
 import Episode from './episode/'
-import MediaPlayer from './media-player'
+import MediaPlayer from './media-container'
 
 export default class App extends Component {
   constructor(props) {
