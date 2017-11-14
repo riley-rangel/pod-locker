@@ -30,8 +30,8 @@ const styles = {
   },
   controls: {
     fontSize: '3.5rem',
-    color: '#616161',
-    border: '2px solid #616161',
+    color: '#673ab7',
+    border: '2px solid #673ab7',
     borderRadius: '100%'
   },
   progessLeft: {

@@ -28,7 +28,7 @@ export default class MediaContainer extends Component {
   }
   updateProgress() {
     this.setState((prevState, props) => {
-      return { progress: prevState.progress + 0.25 }
+      return { progress: this.audio.currentTime }
     })
   }
   handlePlaying() {
