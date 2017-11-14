@@ -11,7 +11,7 @@ export default class App extends Component {
     super(props)
     this.state = {
       view: 'Subscriptions',
-      eps: [],
+      episodes: [],
       playing: {}
     }
     this.handleClick = this.handleClick.bind(this)
@@ -28,14 +28,14 @@ export default class App extends Component {
     if (!$selected) return
     const url = $selected.getAttribute('data-url')
     if (url === this.state.playing) return
-    const episode = this.state.eps.episodes.find(episode => {
+    const episode = this.state.episodes.episodes.find(episode => {
       return episode.audio.url === url
     })
     this.setState({
       playing: {
         url,
-        image: this.state.eps.about.image,
-        podcast: this.state.eps.about.title,
+        image: this.state.episodes.about.image,
+        podcast: this.state.episodes.about.title,
         title: episode.title
       }
     })
@@ -47,8 +47,8 @@ export default class App extends Component {
       body: JSON.stringify(feed)
     }
     const res = await fetch('/episodes', reqOptions)
-    const eps = await res.json()
-    this.setState({ eps })
+    const episodes = await res.json()
+    this.setState({ episodes })
   }
   render() {
     return (
@@ -61,8 +61,8 @@ export default class App extends Component {
               render={ props => <Subscription { ...props } handleClick={ this.handleClick } /> }
             />
             <Route
-              path='/eps'
-              render={ props => <Episode { ...props } eps={ this.state.eps } handleClick={ this.handleEpisodeClick } /> }
+              path='/episodes'
+              render={ props => <Episode { ...props } episodes={ this.state.episodes } handleClick={ this.handleEpisodeClick } /> }
             />
           </Grid>
         </Grid>

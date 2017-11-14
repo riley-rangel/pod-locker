@@ -21,7 +21,7 @@ function SubItem({ classes, sub }) {
       justify='center'
       data-feed={ sub.feed }>
       <Grid item xs={ 12 }>
-        <Link to='/eps' className={ classes.links }>
+        <Link to='/episodes' className={ classes.links }>
           <Card>
             <List>
               <ListItem button>
