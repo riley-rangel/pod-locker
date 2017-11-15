@@ -15,6 +15,7 @@ export default class MediaContainer extends Component {
     this.handlePlaying = this.handlePlaying.bind(this)
     this.updateProgress = this.updateProgress.bind(this)
     this.skip = this.skip.bind(this)
+    this.updateVolume = this.updateVolume.bind(this)
   }
   updatePlaying() {
     this.state.playing
@@ -47,6 +48,9 @@ export default class MediaContainer extends Component {
       ? this.audio.currentTime -= 30
       : this.audio.currentTime += 30
   }
+  updateVolume(value) {
+    this.audio.volume = value
+  }
   render() {
     return (
       <div>
@@ -62,13 +66,13 @@ export default class MediaContainer extends Component {
           this.state.isHidden
             ? null
             : <MediaPlayer
-              duration={ this.state.duration }
               episode={ this.props.episode }
-              isHidden={ this.state.isHidden }
+              duration={ this.state.duration }
               playing={ this.state.playing }
               progress={ this.state.progress }
               skip={ this.skip }
               updatePlaying={ this.updatePlaying }
+              updateVolume={ this.updateVolume }
             />
         }
       </div>
