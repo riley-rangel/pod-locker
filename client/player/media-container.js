@@ -78,6 +78,9 @@ export default class MediaContainer extends Component {
               skip={ this.skip }
               updatePlaying={ this.updatePlaying }
               updateVolume={ this.updateVolume }
+              progressInput={ inputEl => {
+                this.progressBar = inputEl
+              } }
             />
         }
       </div>
