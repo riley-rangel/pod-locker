@@ -7,66 +7,12 @@ import Typography from 'material-ui/Typography'
 import Icon from 'material-ui/Icon'
 import formatProgress from '../utilities/format-progress'
 
-const styles = {
-  container: {
-    position: 'fixed',
-    bottom: 0,
-    zIndex: 100,
-    height: '130px',
-    width: '100%',
-    backgroundColor: 'rgba(255, 255, 255, 1.0)',
-    boxShadow: '0 -3px 6px rgba( 0, 0, 0, 0.16), 0 3px 6px rgba( 0, 0, 0, 0.23)'
-  },
-  coverArt: {
-    position: 'relative',
-    top: '8px',
-    left: '8px',
-    margin: '0 auto',
-    height: 'auto',
-    width: '100px'
-  },
-  title: {
-    marginTop: '7px',
-    overflow: 'hidden'
-  },
-  controls: {
-    margin: '0 0.5rem',
-    color: '#673ab7',
-    border: '2px solid #673ab7',
-    borderRadius: '100%'
-  },
-  play: {
-    fontSize: '3.5rem'
-  },
-  skip: {
-    fontSize: '2.5rem'
-  },
-  progessLeft: {
-    display: 'inline-block',
-    float: 'left',
-    color: '#616161'
-  },
-  progressRight: {
-    display: 'inline-block',
-    float: 'right',
-    color: '#616161'
-  },
-  left: {
-    width: '400px'
-  },
-  middle: {
-    marginTop: '15px',
-    width: 'calc(100vw - 800px)'
-  },
-  right: {
-    width: '400px'
-  }
-}
+import styles from './media-styles'
 
 function MediaPlayer(props) {
   const { classes } = props
   const { episode: { image, podcast, title } } = props
-  const { duration, playing, progress, skip, updatePlaying } = props
+  const { duration, playing, progress, skip, updatePlaying, updateVolume } = props
   return (
     <Grid container justify='center'>
       <Grid item xs={ 12 } className={ classes.container }>
@@ -100,9 +46,7 @@ function MediaPlayer(props) {
                   <Icon
                     onClick={ updatePlaying }
                     className={ ClassNames(classes.controls, classes.play) }>
-                    {
-                      playing ? 'pause' : 'play_arrow'
-                    }
+                    { playing ? 'pause' : 'play_arrow' }
                   </Icon>
                   <Icon
                     onClick={ skip }
@@ -131,6 +75,28 @@ function MediaPlayer(props) {
             </Grid>
           </Grid>
           <Grid item className={ classes.right }>
+            <Grid container
+              justify='center'
+              alignItems='center'
+              className={ classes.volume }>
+              <Icon
+                className={ classes.volumeControls }>
+                { 'volume_down' }
+              </Icon>
+              <input
+                className={ classes.volumeBar }
+                id='volume'
+                type='range'
+                min={ 0 }
+                max={ 1 }
+                step={ 0.05 }
+                onChange={ updateVolume }
+              />
+              <Icon
+                className={ classes.volumeControls }>
+                { 'volume_up' }
+              </Icon>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
