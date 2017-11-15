@@ -20,11 +20,16 @@ const styles = {
     marginTop: '7px',
     overflow: 'hidden'
   },
+  progressBar: {
+    paddingTop: '3px !important'
+  },
   controls: {
     margin: '0 0.5rem',
-    color: '#673ab7',
-    border: '2px solid #673ab7',
-    borderRadius: '100%'
+    color: '#fff',
+    backgroundColor: '#673ab7',
+    border: '5px solid #673ab7',
+    borderRadius: '100%',
+    boxShadow: '0 3px 6px rgba( 0, 0, 0, 0.16), 0 3px 6px rgba( 0, 0, 0, 0.23)'
   },
   play: {
     fontSize: '3.5rem'
