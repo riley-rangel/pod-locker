@@ -17,6 +17,7 @@ export default class App extends Component {
     this.handleClick = this.handleClick.bind(this)
     this.handleEpisodeClick = this.handleEpisodeClick.bind(this)
     this.getEpisodes = this.getEpisodes.bind(this)
+    this.clearEpisodes = this.clearEpisodes.bind(this)
   }
   handleClick({ target }) {
     const $selected = target.closest('div[ data-id ]')
@@ -53,6 +54,9 @@ export default class App extends Component {
     const episodes = await rawEpisodes.json()
     this.setState({ episodes })
   }
+  clearEpisodes() {
+    this.setState({ episodes: [] })
+  }
   render() {
     return (
       <div style={{ 'margin': '65px 0 150px' }}>
@@ -82,6 +86,7 @@ export default class App extends Component {
                       episodes={ this.state.episodes }
                       handleClick={ this.handleEpisodeClick }
                       getEpisodes={ this.getEpisodes }
+                      clearEpisodes={ this.clearEpisodes }
                     />
                   )
                 }

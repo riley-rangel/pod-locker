@@ -8,6 +8,9 @@ export default class EpisodeContainer extends Component {
     const id = this.props.match.params.id
     this.props.getEpisodes(id)
   }
+  componentWillUnmount() {
+    this.props.clearEpisodes()
+  }
   render() {
     const { about = [], episodes = [] } = this.props.episodes
     const handleClick = this.props.handleClick
