@@ -11,6 +11,10 @@ module.exports = function subGateway(collection) {
     async find(filter = {}) {
       const subscriptions = await collection.find(filter).toArray()
       return subscriptions
+    },
+    async findOne(filter = {}) {
+      const subscription = await collection.findOne(filter)
+      return subscription
     }
   }
 }

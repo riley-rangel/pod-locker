@@ -4,9 +4,12 @@ import EpisodeList from './episode-list'
 import EpisodeHeader from './episode-header'
 
 export default class EpisodeContainer extends Component {
-  render(props) {
-    const { about = [] } = this.props.episodes
-    const { episodes = [] } = this.props.episodes
+  async componentWillMount() {
+    const id = this.props.match.params.id
+    this.props.getEpisodes(id)
+  }
+  render() {
+    const { about = [], episodes = [] } = this.props.episodes
     const handleClick = this.props.handleClick
     return (
       <Grid container>

@@ -14,6 +14,7 @@ export default class MediaContainer extends Component {
     this.updatePlaying = this.updatePlaying.bind(this)
     this.handlePlaying = this.handlePlaying.bind(this)
     this.updateProgress = this.updateProgress.bind(this)
+    this.skip = this.skip.bind(this)
   }
   updatePlaying() {
     this.state.playing
@@ -41,6 +42,11 @@ export default class MediaContainer extends Component {
       })
     }
   }
+  skip({ target }) {
+    target.textContent === 'replay_30'
+      ? this.audio.currentTime -= 30
+      : this.audio.currentTime += 30
+  }
   render() {
     return (
       <div>
@@ -61,6 +67,7 @@ export default class MediaContainer extends Component {
               isHidden={ this.state.isHidden }
               playing={ this.state.playing }
               progress={ this.state.progress }
+              skip={ this.skip }
               updatePlaying={ this.updatePlaying }
             />
         }

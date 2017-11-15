@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ClassNames from 'classnames'
 import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
@@ -29,10 +30,16 @@ const styles = {
     overflow: 'hidden'
   },
   controls: {
-    fontSize: '3.5rem',
+    margin: '0 0.5rem',
     color: '#673ab7',
     border: '2px solid #673ab7',
     borderRadius: '100%'
+  },
+  play: {
+    fontSize: '3.5rem'
+  },
+  skip: {
+    fontSize: '2.5rem'
   },
   progessLeft: {
     display: 'inline-block',
@@ -59,7 +66,7 @@ const styles = {
 function MediaPlayer(props) {
   const { classes } = props
   const { episode: { image, podcast, title } } = props
-  const { duration, playing, progress, updatePlaying } = props
+  const { duration, playing, progress, skip, updatePlaying } = props
   return (
     <Grid container justify='center'>
       <Grid item xs={ 12 } className={ classes.container }>
@@ -84,11 +91,23 @@ function MediaPlayer(props) {
           <Grid item className={ classes.middle }>
             <Grid container>
               <Grid item xs={ 12 }>
-                <Grid container justify='center'>
-                  <Icon onClick={ updatePlaying } className={ classes.controls }>
+                <Grid container justify='center' alignItems='center'>
+                  <Icon
+                    onClick={ skip }
+                    className={ ClassNames(classes.controls, classes.skip) }>
+                    { 'replay_30' }
+                  </Icon>
+                  <Icon
+                    onClick={ updatePlaying }
+                    className={ ClassNames(classes.controls, classes.play) }>
                     {
                       playing ? 'pause' : 'play_arrow'
                     }
+                  </Icon>
+                  <Icon
+                    onClick={ skip }
+                    className={ ClassNames(classes.controls, classes.skip) }>
+                    { 'forward_30' }
                   </Icon>
                 </Grid>
               </Grid>

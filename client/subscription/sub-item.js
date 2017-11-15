@@ -13,15 +13,15 @@ const styles = {
   }
 }
 
-function SubItem({ classes, subscription }) {
-  const { title, author, image } = subscription.about
+function SubItem({ classes, subscription: { id, about } }) {
+  const { title, author, image } = about
   return (
     <Grid
       container
       justify='center'
-      data-feed={ subscription.feed }>
+      data-id={ id }>
       <Grid item xs={ 12 }>
-        <Link to='/episodes' className={ classes.links }>
+        <Link to={ '/episodes/' + id } className={ classes.links }>
           <Card>
             <List>
               <ListItem button>
