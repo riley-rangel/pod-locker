@@ -66,7 +66,7 @@ const styles = {
 function MediaPlayer(props) {
   const { classes } = props
   const { episode: { image, podcast, title } } = props
-  const { duration, playing, progress, updatePlaying } = props
+  const { duration, playing, progress, skip, updatePlaying } = props
   return (
     <Grid container justify='center'>
       <Grid item xs={ 12 } className={ classes.container }>
@@ -92,7 +92,9 @@ function MediaPlayer(props) {
             <Grid container>
               <Grid item xs={ 12 }>
                 <Grid container justify='center' alignItems='center'>
-                  <Icon className={ ClassNames(classes.controls, classes.skip) }>
+                  <Icon
+                    onClick={ skip }
+                    className={ ClassNames(classes.controls, classes.skip) }>
                     { 'replay_30' }
                   </Icon>
                   <Icon
