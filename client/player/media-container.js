@@ -48,8 +48,8 @@ export default class MediaContainer extends Component {
       ? this.audio.currentTime -= 30
       : this.audio.currentTime += 30
   }
-  updateVolume(value) {
-    this.audio.volume = value
+  updateVolume({ target }) {
+    this.audio.volume = target.value
   }
   render() {
     return (

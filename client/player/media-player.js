@@ -66,7 +66,7 @@ const styles = {
 function MediaPlayer(props) {
   const { classes } = props
   const { episode: { image, podcast, title } } = props
-  const { duration, playing, progress, skip, updatePlaying } = props
+  const { duration, playing, progress, skip, updatePlaying, updateVolume } = props
   return (
     <Grid container justify='center'>
       <Grid item xs={ 12 } className={ classes.container }>
@@ -100,9 +100,7 @@ function MediaPlayer(props) {
                   <Icon
                     onClick={ updatePlaying }
                     className={ ClassNames(classes.controls, classes.play) }>
-                    {
-                      playing ? 'pause' : 'play_arrow'
-                    }
+                    { playing ? 'pause' : 'play_arrow' }
                   </Icon>
                   <Icon
                     onClick={ skip }
@@ -131,6 +129,16 @@ function MediaPlayer(props) {
             </Grid>
           </Grid>
           <Grid item className={ classes.right }>
+            <form>
+              <input
+                id='volume'
+                type='range'
+                min={ 0 }
+                max={ 1 }
+                step={ 0.05 }
+                onChange={ updateVolume }
+              />
+            </form>
           </Grid>
         </Grid>
       </Grid>
