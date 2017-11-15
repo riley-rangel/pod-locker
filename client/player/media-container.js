@@ -12,8 +12,9 @@ export default class MediaContainer extends Component {
       progress: 0
     }
     this.updatePlaying = this.updatePlaying.bind(this)
-    this.handlePlaying = this.handlePlaying.bind(this)
     this.updateProgress = this.updateProgress.bind(this)
+    this.handlePlaying = this.handlePlaying.bind(this)
+    this.seek = this.seek.bind(this)
     this.skip = this.skip.bind(this)
     this.updateVolume = this.updateVolume.bind(this)
   }
@@ -43,6 +44,9 @@ export default class MediaContainer extends Component {
       })
     }
   }
+  seek({ target }) {
+    this.audio.currentTime = target.value
+  }
   skip({ target }) {
     target.textContent === 'replay_30'
       ? this.audio.currentTime -= 30
@@ -70,6 +74,7 @@ export default class MediaContainer extends Component {
               duration={ this.state.duration }
               playing={ this.state.playing }
               progress={ this.state.progress }
+              seek={ this.seek }
               skip={ this.skip }
               updatePlaying={ this.updatePlaying }
               updateVolume={ this.updateVolume }
