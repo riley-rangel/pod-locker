@@ -6,7 +6,7 @@ import SubList from './sub-list'
 export default class SubContainer extends Component {
   constructor(props) {
     super(props)
-    this.state = { subs: [] }
+    this.state = { subscriptions: [] }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleSubmit(event) {
@@ -24,17 +24,17 @@ export default class SubContainer extends Component {
       body: JSON.stringify(feed)
     }
     const res = await fetch('/subscribe', reqOptions)
-    const sub = await res.json()
-    if (sub) {
+    const subscription = await res.json()
+    if (subscription) {
       this.setState({
-        subs: this.state.subs.concat(sub)
+        subscriptions: this.state.subscriptions.concat(subscription)
       })
     }
   }
   async componentDidMount() {
     const res = await fetch('/subscriptions')
-    const subs = await res.json()
-    this.setState({ subs })
+    const subscriptions = await res.json()
+    this.setState({ subscriptions })
   }
   render() {
     return (
@@ -46,7 +46,7 @@ export default class SubContainer extends Component {
         </Grid>
         <Grid item xs={ 12 }>
           <SubList
-            subs={ this.state.subs }
+            subscriptions={ this.state.subscriptions }
             handleClick={ this.props.handleClick }
           />
         </Grid>

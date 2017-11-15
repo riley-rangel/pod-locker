@@ -2,12 +2,12 @@ import React from 'react'
 import Grid from 'material-ui/Grid'
 import Card from 'material-ui/Card'
 import List, { ListItem, ListItemText } from 'material-ui/List'
-import formatDate from './format-date'
-import formatTime from './format-time'
+import formatDate from '../utilities/format-date'
+import formatTime from '../utilities/format-time'
 
-export default function episodeItem({ title, pubDate, duration }, i) {
+export default function episodeItem({ title, pubDate, duration, audio: { url } }, i) {
   return (
-    <Grid container key={ i }>
+    <Grid container key={ i } data-url={ url }>
       <Grid item xs={ 12 }>
         <Card>
           <List>

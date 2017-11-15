@@ -2,7 +2,7 @@ import React from 'react'
 import Grid from 'material-ui/Grid'
 import List, { ListItem, ListItemText, ListItemAvatar } from 'material-ui/List'
 import Card from 'material-ui/Card'
-import CoverArtMain from './cover-art-main'
+import CoverArt from './sub-cover-art'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
@@ -13,20 +13,20 @@ const styles = {
   }
 }
 
-function SubItem({ classes, sub }) {
-  const { title, author, image } = sub.about
+function SubItem({ classes, subscription }) {
+  const { title, author, image } = subscription.about
   return (
     <Grid
       container
       justify='center'
-      data-feed={ sub.feed }>
+      data-feed={ subscription.feed }>
       <Grid item xs={ 12 }>
-        <Link to='/eps' className={ classes.links }>
+        <Link to='/episodes' className={ classes.links }>
           <Card>
             <List>
               <ListItem button>
                 <ListItemAvatar>
-                  <CoverArtMain alt='' src={ image } />
+                  <CoverArt alt='' src={ image } />
                 </ListItemAvatar>
                 <ListItemText
                   primary={ title }

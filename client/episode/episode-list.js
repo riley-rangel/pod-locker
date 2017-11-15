@@ -1,12 +1,12 @@
 import React from 'react'
 import Grid from 'material-ui/Grid'
-import SubItem from './sub-item'
+import episodeItem from './episode-item'
 
-export default function SubsList({ subs, handleClick }) {
+export default function EpisodeList({ episodes, handleClick }) {
   return (
     <Grid container justify='center' onClick={ handleClick }>
       <Grid item xs={ 12 }>
-        { subs.map((sub, i) => <SubItem sub={ sub } key={ i } />) }
+        { episodes.map((episode, i) => episodeItem(episode, i)) }
       </Grid>
     </Grid>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 import Grid from 'material-ui/Grid'
-import CoverArt from './cover-art'
+import CoverArt from './episode-cover-art'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
