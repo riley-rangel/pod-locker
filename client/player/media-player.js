@@ -10,9 +10,18 @@ import formatProgress from '../utilities/format-progress'
 import styles from './media-styles'
 
 function MediaPlayer(props) {
-  const { classes } = props
-  const { episode: { image, podcast, title } } = props
-  const { duration, playing, progress, skip, updatePlaying, updateVolume } = props
+  const {
+    classes,
+    duration,
+    episode: { image, podcast, title },
+    playing,
+    progress,
+    seek,
+    skip,
+    updatePlaying,
+    updateVolume
+  } = props
+
   return (
     <Grid container justify='center'>
       <Grid item xs={ 12 } className={ classes.container }>
@@ -57,11 +66,12 @@ function MediaPlayer(props) {
               </Grid>
               <Grid item xs={ 12 } className={ classes.progressBar }>
                 <input
+                  onChange={ seek }
                   id='progress-bar'
                   type='range'
                   min={ 0 }
                   max={ duration }
-                  value={ progress }
+                  ref={ props.progressInput }
                 />
                 <Typography
                   className={ classes.progessLeft }>
