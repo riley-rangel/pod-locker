@@ -30,6 +30,7 @@ export default class MediaContainer extends Component {
       : this.setState({ playing: true })
   }
   updateProgress() {
+    this.progressBar.value = this.audio.currentTime
     this.setState({ progress: this.audio.currentTime })
   }
   handlePlaying() {
