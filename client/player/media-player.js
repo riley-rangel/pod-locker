@@ -104,6 +104,11 @@ function MediaPlayer(props) {
                       playing ? 'pause' : 'play_arrow'
                     }
                   </Icon>
+                  <Icon
+                    onClick={ skip }
+                    className={ ClassNames(classes.controls, classes.skip) }>
+                    { 'forward_30' }
+                  </Icon>
                 </Grid>
               </Grid>
               <Grid item xs={ 12 } className={ classes.progressBar }>
