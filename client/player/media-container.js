@@ -45,7 +45,7 @@ export default class MediaContainer extends Component {
   skip({ target }) {
     target.textContent === 'replay_30'
       ? this.audio.currentTime -= 30
-      : console.log('not yet')
+      : this.audio.currentTime += 30
   }
   render() {
     return (
