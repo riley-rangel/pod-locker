@@ -16,12 +16,13 @@ export default class App extends Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleEpisodeClick = this.handleEpisodeClick.bind(this)
+    this.getEpisodes = this.getEpisodes.bind(this)
   }
   handleClick({ target }) {
-    const $selected = target.closest('div[ data-feed ]')
+    const $selected = target.closest('div[ data-id ]')
     if (!$selected) return
-    const feed = { feed: $selected.getAttribute('data-feed') }
-    this.getEpisodes(feed)
+    const id = $selected.getAttribute('data-id')
+    this.getEpisodes(id)
   }
   handleEpisodeClick({ target }) {
     const $selected = target.closest('div[ data-url ]')
@@ -40,14 +41,16 @@ export default class App extends Component {
       }
     })
   }
-  async getEpisodes(feed) {
+  async getEpisodes(id) {
+    const response = await fetch('/subscriptions/' + id)
+    const { feed } = await response.json()
     const reqOptions = {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(feed)
+      body: JSON.stringify({ feed })
     }
-    const res = await fetch('/episodes', reqOptions)
-    const episodes = await res.json()
+    const rawEpisodes = await fetch('/episodes', reqOptions)
+    const episodes = await rawEpisodes.json()
     this.setState({ episodes })
   }
   render() {
@@ -58,11 +61,31 @@ export default class App extends Component {
           <Grid item xs={ 12 } sm={ 10 } lg={ 8 } xl={ 6 }>
             <Route
               exact path='/'
-              render={ props => <Subscription { ...props } handleClick={ this.handleClick } /> }
+              render={
+                props => {
+                  return (
+                    <Subscription
+                      { ...props }
+                      handleClick={ this.handleClick }
+                    />
+                  )
+                }
+              }
             />
             <Route
-              path='/episodes'
-              render={ props => <Episode { ...props } episodes={ this.state.episodes } handleClick={ this.handleEpisodeClick } /> }
+              path='/episodes/:id'
+              render={
+                props => {
+                  return (
+                    <Episode
+                      { ...props }
+                      episodes={ this.state.episodes }
+                      handleClick={ this.handleEpisodeClick }
+                      getEpisodes={ this.getEpisodes }
+                    />
+                  )
+                }
+              }
             />
           </Grid>
         </Grid>
