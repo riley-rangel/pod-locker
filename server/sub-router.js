@@ -14,6 +14,10 @@ module.exports = function subRouter(gateway) {
       const subs = await gateway.find()
       res.status(200).json(subs)
     }))
+    .delete('/subscription/:id', wrap(async ({ params: { id } }, res) => {
+      const result = await gateway.deleteOne(id)
+      result.n ? res.status(204).json(result) : res.sendStatus(404)
+    }))
     .post('/subscribe', wrap(async ({ body: { feed } }, res) => {
       const parsed = await asyncParseURL(feed)
       const { about } = feedConverter(parsed.feed)
