@@ -33,9 +33,13 @@ export default class SubContainer extends Component {
     }
   }
   async unsubscribe({ target }) {
-    const id = target.getAttribute('data-id')
-    const result = await fetch('/subscription/' + id)
-    if (result) {
+    const $selected = target.closest('div[ data-id ]')
+    if (!$selected) return
+    const id = $selected.getAttribute('data-id')
+    const confirmed = window.confirm('Do you want to unsubscribe?')
+    if (!confirmed) return
+    const result = await fetch('/subscription/' + id, { method: 'DELETE' })
+    if (confirmed && result) {
       this.setState({
         subscriptions: this.state.subscriptions.filter(subscription => {
           return subscription.id !== id
