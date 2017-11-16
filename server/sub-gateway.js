@@ -15,6 +15,10 @@ module.exports = function subGateway(collection) {
     async findOne(filter = {}) {
       const subscription = await collection.findOne(filter)
       return subscription
+    },
+    async deleteOne(id) {
+      const { result } = await collection.deleteOne({ id })
+      return result
     }
   }
 }
