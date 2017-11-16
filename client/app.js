@@ -43,15 +43,8 @@ export default class App extends Component {
     })
   }
   async getEpisodes(id) {
-    const response = await fetch('/subscriptions/' + id)
-    const { feed } = await response.json()
-    const reqOptions = {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ feed })
-    }
-    const rawEpisodes = await fetch('/episodes', reqOptions)
-    const episodes = await rawEpisodes.json()
+    const response = await fetch('/episodes/' + id)
+    const episodes = await response.json()
     this.setState({ episodes })
   }
   clearEpisodes() {
