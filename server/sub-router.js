@@ -28,7 +28,7 @@ module.exports = function subRouter(gateway) {
       const parsed = await asyncParseURL(feed)
       res.json(feedConverter(parsed.feed))
     }))
-    .get('/episodes/:id', wrap(async ({ params = {} }, res) => {
+    .get('/episodes/:id', wrap(async ({ params }, res) => {
       const { feed } = await gateway.findOne(params)
       const parsed = await asyncParseURL(feed)
       res.status(200).json(feedConverter(parsed.feed))
