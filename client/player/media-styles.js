@@ -48,15 +48,15 @@ const styles = {
     color: '#616161'
   },
   left: {
-    width: '400px'
+    width: '360px'
   },
   middle: {
     marginTop: '15px',
-    width: 'calc(100vw - 800px)'
+    width: 'calc(100vw - 720px)'
   },
   right: {
     marginTop: '18px',
-    width: '400px'
+    width: '360px'
   },
   volume: {
     height: '100%'

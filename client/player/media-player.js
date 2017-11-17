@@ -46,7 +46,7 @@ function MediaPlayer(props) {
               </Grid>
             </Grid>
           </Hidden>
-          <Grid item className={ classes.middle }>
+          <Grid item id='player-controls' className={ classes.middle }>
             <Grid container>
               <Grid item xs={ 12 }>
                 <Grid container justify='center' alignItems='center'>
