@@ -14,9 +14,13 @@ export default class MediaContainer extends Component {
     this.updatePlaying = this.updatePlaying.bind(this)
     this.updateProgress = this.updateProgress.bind(this)
     this.handlePlaying = this.handlePlaying.bind(this)
+    this.play = this.play.bind(this)
     this.seek = this.seek.bind(this)
     this.skip = this.skip.bind(this)
     this.updateVolume = this.updateVolume.bind(this)
+  }
+  play() {
+    this.audio.play()
   }
   updatePlaying() {
     this.state.playing
@@ -65,7 +69,7 @@ export default class MediaContainer extends Component {
           } }
           src={ this.props.episode.url }
           onPlaying={ this.handlePlaying }
-          autoPlay
+          onCanPlay={ this.play }
         />
         {
           this.state.isHidden
