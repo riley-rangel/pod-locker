@@ -1,10 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import ClassNames from 'classnames'
-import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
-import Typography from 'material-ui/Typography'
+import Grid from 'material-ui/Grid'
+import Hidden from 'material-ui/Hidden'
 import Icon from 'material-ui/Icon'
+import Typography from 'material-ui/Typography'
+import ClassNames from 'classnames'
+import PropTypes from 'prop-types'
 import formatProgress from '../utilities/format-progress'
 
 import styles from './media-styles'
@@ -26,23 +27,25 @@ function MediaPlayer(props) {
     <Grid container justify='center'>
       <Grid item xs={ 12 } className={ classes.container }>
         <Grid container>
-          <Grid item className={ classes.left }>
-            <Grid container>
-              <Grid item xs={ 4 }>
-                <img alt='' src={ image } className={ classes.coverArt } />
-              </Grid>
-              <Grid item xs={ 8 }>
-                <Grid container>
-                  <Grid item xs={ 12 } className={ classes.title }>
-                    <Typography type='body1'>{ title }</Typography>
-                  </Grid>
-                  <Grid item xs={ 12 }>
-                    <Typography type='caption'>{ podcast }</Typography>
+          <Hidden smDown>
+            <Grid item className={ classes.left }>
+              <Grid container>
+                <Grid item xs={ 4 }>
+                  <img alt='' src={ image } className={ classes.coverArt } />
+                </Grid>
+                <Grid item xs={ 8 }>
+                  <Grid container>
+                    <Grid item xs={ 12 } className={ classes.title }>
+                      <Typography type='body1'>{ title }</Typography>
+                    </Grid>
+                    <Grid item xs={ 12 }>
+                      <Typography type='caption'>{ podcast }</Typography>
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
-          </Grid>
+          </Hidden>
           <Grid item className={ classes.middle }>
             <Grid container>
               <Grid item xs={ 12 }>
@@ -84,30 +87,32 @@ function MediaPlayer(props) {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item className={ classes.right }>
-            <Grid container
-              justify='center'
-              alignItems='center'
-              className={ classes.volume }>
-              <Icon
-                className={ classes.volumeControls }>
-                { 'volume_down' }
-              </Icon>
-              <input
-                className={ classes.volumeBar }
-                id='volume'
-                type='range'
-                min={ 0 }
-                max={ 1 }
-                step={ 0.05 }
-                onChange={ updateVolume }
-              />
-              <Icon
-                className={ classes.volumeControls }>
-                { 'volume_up' }
-              </Icon>
+          <Hidden smDown>
+            <Grid item className={ classes.right }>
+              <Grid container
+                justify='center'
+                alignItems='center'
+                className={ classes.volume }>
+                <Icon
+                  className={ classes.volumeControls }>
+                  { 'volume_down' }
+                </Icon>
+                <input
+                  className={ classes.volumeBar }
+                  id='volume'
+                  type='range'
+                  min={ 0 }
+                  max={ 1 }
+                  step={ 0.05 }
+                  onChange={ updateVolume }
+                />
+                <Icon
+                  className={ classes.volumeControls }>
+                  { 'volume_up' }
+                </Icon>
+              </Grid>
             </Grid>
-          </Grid>
+          </Hidden>
         </Grid>
       </Grid>
     </Grid>
