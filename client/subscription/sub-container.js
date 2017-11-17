@@ -8,6 +8,7 @@ export default class SubContainer extends Component {
     super(props)
     this.state = { subscriptions: [] }
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.unsubscribe = this.unsubscribe.bind(this)
   }
   handleSubmit(event) {
     event.preventDefault()
@@ -31,6 +32,19 @@ export default class SubContainer extends Component {
       })
     }
   }
+  async unsubscribe({ target }) {
+    const $selected = target.closest('div[ data-id ]')
+    if (!$selected) return
+    const id = $selected.getAttribute('data-id')
+    const confirmed = window.confirm('Do you want to unsubscribe?')
+    if (!confirmed) return
+    await fetch('/subscription/' + id, { method: 'DELETE' })
+    this.setState({
+      subscriptions: this.state.subscriptions.filter(subscription => {
+        return subscription.id !== id
+      })
+    })
+  }
   async componentDidMount() {
     const res = await fetch('/subscriptions')
     const subscriptions = await res.json()
@@ -48,6 +62,7 @@ export default class SubContainer extends Component {
           <SubList
             subscriptions={ this.state.subscriptions }
             handleClick={ this.props.handleClick }
+            unsubscribe={ this.unsubscribe }
           />
         </Grid>
       </Grid>

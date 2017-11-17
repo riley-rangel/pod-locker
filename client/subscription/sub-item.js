@@ -1,40 +1,56 @@
 import React from 'react'
-import Grid from 'material-ui/Grid'
+import { Link } from 'react-router-dom'
+import { withStyles } from 'material-ui/styles'
 import List, { ListItem, ListItemText, ListItemAvatar } from 'material-ui/List'
 import Card from 'material-ui/Card'
-import CoverArt from './sub-cover-art'
-import { Link } from 'react-router-dom'
+import Grid from 'material-ui/Grid'
+import Icon from 'material-ui/Icon'
 import PropTypes from 'prop-types'
-import { withStyles } from 'material-ui/styles'
+import CoverArt from './sub-cover-art'
 
 const styles = {
   links: {
     textDecoration: 'none'
+  },
+  unsubscribe: {
+    marginLeft: '1vw',
+    color: '#fff',
+    fontSize: '1rem',
+    backgroundColor: '#616161',
+    border: '3px solid #616161',
+    borderRadius: '100%',
+    cursor: 'pointer'
   }
 }
 
-function SubItem({ classes, subscription: { id, about } }) {
+function SubItem({ classes, subscription: { id, about }, unsubscribe }) {
   const { title, author, image } = about
   return (
-    <Grid
-      container
-      justify='center'
-      data-id={ id }>
+    <Grid container justify='center' data-id={ id }>
       <Grid item xs={ 12 }>
-        <Link to={ '/episodes/' + id } className={ classes.links }>
-          <Card>
-            <List>
-              <ListItem button>
-                <ListItemAvatar>
-                  <CoverArt alt='' src={ image } />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={ title }
-                  secondary={ author }/>
-              </ListItem>
-            </List>
-          </Card>
-        </Link>
+        <Card>
+          <List>
+            <Grid container justify='center' alignItems='center'>
+              <Grid item md={ 11 } xs={ 10 }>
+                <Link to={ '/episodes/' + id } className={ classes.links }>
+                  <ListItem button>
+                    <ListItemAvatar>
+                      <CoverArt alt='' src={ image } />
+                    </ListItemAvatar>
+                    <ListItemText primary={ title } secondary={ author } />
+                  </ListItem>
+                </Link>
+              </Grid>
+              <Grid item md={ 1 } xs={ 2 }>
+                <Icon
+                  className={ classes.unsubscribe }
+                  onClick={ unsubscribe }>
+                  { 'close' }
+                </Icon>
+              </Grid>
+            </Grid>
+          </List>
+        </Card>
       </Grid>
     </Grid>
   )
