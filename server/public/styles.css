@@ -27,3 +27,10 @@ input[type=range]:focus::-webkit-slider-thumb {
   width: 12px;
   border-radius: 100%;
 }
+
+@media (max-width: 960px) {
+  #player-controls {
+    width: 100%;
+    padding: 0 20px;
+  }
+}
