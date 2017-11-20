@@ -11,12 +11,14 @@ https://pod-locker.herokuapp.com/
 
 # Option #2: Download
 Download project files and load up on your machine. Steps listed below should get you up and running:
+
 (Note: You will need `Node.js` and `npm` installed to continue. If these are not installed on your current machine, or you are not sure, here is a link to the npm site for more information: https://www.npmjs.com/get-npm)
+
 (Note: The steps given below are given with assumption that the user will have some familiarity with issuing commands to the computer using a terminal emulator.)
 
 1. Go to the project homepage at: https://github.com/riley-rangel/pod-locker
 2. Click the green "Clone or download" button > Download Zip
-3. Once you have `npm` installed, while in in your terminal, open the root directory for the project: `/pod-locker-master`. (from step #2)
+3. If you do not have `npm` installed, see link above for more details. Once you have `npm` installed, while in in your terminal, open the root directory for the project: `/pod-locker-master`. (from step #2)
 4. In your terminal, run the command `npm install` while inside the root directory to install the pertinent npm packages for the project. These will appear under `node_modules` in the root directory upon completion. For a full list of the downloaded packages, please review the dependencies included in the `package.json` file.
 5. Still in the root directory, create a file named `.env` to create the enviroment variables needed to run the project. 
 In the `.env` file you will need: 
