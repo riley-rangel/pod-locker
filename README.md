@@ -1,8 +1,6 @@
 # pod-locker
 A web-app for podcast listeners to discover, subscribe and listen to podcasts.
 
-<img width="1680" alt="screen shot 2017-11-19 at 4 38 58 pm" src="https://user-images.githubusercontent.com/31449041/32998374-6bd6f940-cd4f-11e7-9a90-4b0b8f6dc1da.png">
-
 Thanks for taking the time to take a look! :) Options available for checking out this project:
 
 # Option #1: Heroku
